@@ -12,12 +12,15 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
+
 import com.niit.shoppingcart.dao.CategoryDAO;
 import com.niit.shoppingcart.dao.ProductDAO;
 import com.niit.shoppingcart.dao.SupplierDAO;
 import com.niit.shoppingcart.model.Category;
 import com.niit.shoppingcart.model.Product;
 import com.niit.shoppingcart.model.Supplier;
+import com.niit.shoppingcart.util.FileUtil;
 
 @Controller
 public class AdminController {
@@ -40,6 +43,8 @@ public class AdminController {
 	
 	@Autowired
 	private ProductDAO productDAO;
+	
+	//private String path = "resources/img/";
 
 	 @RequestMapping("/addcategory")
 	 public String Addcategory(Model model, HttpSession session, @ModelAttribute("id") String id, @ModelAttribute("name") String name, @ModelAttribute("description") String description)
@@ -64,17 +69,19 @@ public class AdminController {
 		} 
 	 
 	 
-/*	 @RequestMapping("/addsupplier")
-	 public String AddSupplier(Model model,HttpSession session, @RequestParam("Id") String id,@RequestParam("name") String name, @RequestParam("address") String address )
+	 @RequestMapping("/addsupplier")
+	 public String Addsupplier(Model model, HttpSession session, @ModelAttribute("id") String id, @ModelAttribute("name") String name, @ModelAttribute("address") String address )
 	 {
 		 supplier.setId(id);
 		 supplier.setName(name);
 		 supplier.setAddress(address);
       if(supplierDAO.save(supplier))
       {
-    	  model.addAttribute("message", "supplier added");
+    	  model.addAttribute("message", "Supplier added");
+    	  
+    	  session.setAttribute("supplier", supplier);
     	  List<Supplier> supplierList = supplierDAO.list();
-    	  session.setAttribute("supplierList", supplierList);
+    	  session.setAttribute("SupplierList", supplierList);
       }else
     	  model.addAttribute("message", "Error Occured");
           model.addAttribute("UserClickedSUPPLIER", "true");
@@ -82,6 +89,32 @@ public class AdminController {
           return "admin";
 	 }
 	  
+	 @RequestMapping("/addproduct")
+	 public String Addproduct(Model model, HttpSession session, @ModelAttribute("id") String id, @ModelAttribute("name") String name, @ModelAttribute("price") String price,@ModelAttribute("stock") String stock, @ModelAttribute("category_id") String category_id, @ModelAttribute("supplier_id") String supplier_id, @ModelAttribute("description") String description)
+	 {
+		 product.setId(id);
+		 product.setName(name);
+		 product.setPrice(price);
+		 product.setStock(stock);
+		 product.setDescription(description);
+		 product.setCategory_id(category_id);
+		 product.setSupplier_id(supplier_id);
+	
+		 if(productDAO.save(product))
+		 {
+	//		 FileUtil.upload(path, file, product.getId()+".jpg");
+			 model.addAttribute("message", "Product added");
+			 session.setAttribute("product", product);
+			 List<Product> productList = productDAO.list();
+			 session.setAttribute("ProductList", productList);
+		 }else
+		 {
+			 model.addAttribute("message", "Error occured");
+			 model.addAttribute("UserClickedPRODUCT", "true");
+		 }
+		 
+		 return "admin";
+	 }
 	/*@RequestMapping("Category")
 	public ModelAndView categories() {
 		log.debug("Starting of the method categories");
@@ -141,10 +174,13 @@ public class AdminController {
 		}
 	 
        
-	 @RequestMapping(value = { "/suppliertable"})
-	 public String suppliertable(Model model)
+	 @RequestMapping(value = {"/suppliertable"})
+	 public String suppliertable(Model model, HttpSession session)
 	 {
 		 model.addAttribute("UserClickedViewSupplierTable", "true");
+		  List<Supplier> supplierList = supplierDAO.list();
+    	  session.setAttribute("SupplierList", supplierList);
+    	  
 		 return "admin";
 	 }
 	 
@@ -152,6 +188,23 @@ public class AdminController {
 	 public String Supplier(Model model)
 	 {
 		 model.addAttribute("UserClickedSUPPLIER", "true");
+		 return "admin";
+	 }
+	 
+	 @RequestMapping(value = {"/producttable"})
+	 public String producttable(Model model, HttpSession session)
+	 {
+		 model.addAttribute("UserClickedViewProductTable", "true");
+		  List<Product> productList = productDAO.list();
+    	  session.setAttribute("ProductList", productList);
+    	  
+		 return "admin";
+	 }
+	 
+	 @RequestMapping("/product")
+	 public String Product(Model model)
+	 {
+		 model.addAttribute("UserClickedProduct", "true");
 		 return "admin";
 	 }
 	 

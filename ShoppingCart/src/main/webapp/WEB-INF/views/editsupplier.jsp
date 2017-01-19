@@ -26,13 +26,13 @@
           <div class="col-sm-6 form-group">
               <h4>ID</h4>
                 <input type="text" placeholder="Enter ID.."
-                  class="form-control" name="ID" required value=${supplier.id}></input>
+                  class="form-control" name="id" required value=${supplier.id}></input>
               </div>
 
               <div class="col-sm-6 form-group">
               <h4>Name</h4>
                 <input type="text" placeholder="Enter Name.."
-                  class="form-control " type="name" required value=${supplier.name}></input>
+                  class="form-control " name="name" required value=${supplier.name}></input>
               </div>
               
               </div>     
@@ -41,7 +41,7 @@
                           <div class="col-sm-12 form-group">
               <h4>Address</h4>
                 <textarea type="text" placeholder="Enter Address"
-                  class="form-control" type="description" required  value=${supplier.address}></textarea>
+                  class="form-control" name="address" required  >${supplier.address}</textarea>
               </div>
                         </div>
 

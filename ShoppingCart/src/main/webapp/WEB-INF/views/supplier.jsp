@@ -27,13 +27,13 @@
           <div class="col-sm-6 form-group">
               <h4>ID</h4>
                 <input type="text" placeholder="Enter ID.."
-                  class="form-control" name="id"></input>
+                  class="form-control" name="id" ></input>
               </div>
 
               <div class="col-sm-6 form-group">
               <h4>Name</h4>
                 <input type="text" placeholder="Enter Name.."
-                  class="form-control"  name="name"></input>
+                  class="form-control"  name="name" ></input>
               </div>
               
               </div>     
@@ -42,7 +42,7 @@
                           <div class="col-sm-12 form-group">
               <h4>Address</h4>
                 <textarea type="text" placeholder="Enter Address"
-                  class="form-control" name="description"></textarea>
+                  class="form-control" name="address" ></textarea>
               </div>
                         </div>
 

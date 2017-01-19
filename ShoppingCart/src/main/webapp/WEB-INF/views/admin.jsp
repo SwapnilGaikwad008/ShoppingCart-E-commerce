@@ -29,13 +29,43 @@
 	<jsp:include page="editcategory.jsp" />
 	</c:if>
 	
+   <c:if test="${UserclickedEDIT }">
+	<jsp:include page="editsupplier.jsp" />
+	</c:if>
+	<c:if test="${EditSupplier }">
+	<jsp:include page="editsupplier.jsp" />
+	</c:if>
+	
+	<c:if test="${UserClickedSUPPLIER}">
+		<jsp:include page="supplier.jsp" />
+	</c:if>
+	
+	
+	 <c:if test="${UserClickedViewSupplierTable }">
+		<jsp:include page="suppliertable.jsp" />
+	</c:if>
+	
+	<c:if test="${UserClickedPRODUCT}">
+	<jsp:include page="product.jsp" />
+	</c:if>
+	
+	<c:if test="${UserClickedViewProductTable}">
+	<jsp:include page="producttable.jsp" />
+	</c:if>
+	
+	<c:if test="${UserClickedProduct}">
+	<jsp:include page="product.jsp" />
+	</c:if>
+	
+	<c:if test="${UserClickedPRODUCTEDIT}">
+	<jsp:include page="editproduct.jsp" />
+	</c:if>
+	
+	<c:if test="${EditProduct}">
+	<jsp:include page="editproduct.jsp" />
+	</c:if>
+	
 
-	
-	
-	
-	
-	
-	
 	
 </body>
 </html>

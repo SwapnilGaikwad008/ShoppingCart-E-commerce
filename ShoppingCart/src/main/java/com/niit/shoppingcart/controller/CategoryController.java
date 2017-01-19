@@ -51,8 +51,7 @@ public class CategoryController {
 	public String editCategory(@ModelAttribute("id") String id, Model model, HttpSession session )
 	{
 		category = categoryDAO.get(id);
-		model.addAttribute("category", category);
-		
+		model.addAttribute("category", category);	
 		model.addAttribute("UserClickedEDIT", "true");
 		return "admin";
 		
