@@ -31,6 +31,7 @@ public class Category {
 	@Column(name = "description")
 	private String description;
 	
+	
 @OneToMany(mappedBy="category" ,cascade=CascadeType.ALL,fetch=FetchType.EAGER )
 
 	public String getId() {

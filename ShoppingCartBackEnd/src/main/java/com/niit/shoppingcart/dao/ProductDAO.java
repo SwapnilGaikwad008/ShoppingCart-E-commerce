@@ -10,10 +10,10 @@ public interface ProductDAO {
 
 	public Product get(String id);
 
-	public Product validate(String id, String password);
-
 	public boolean save(Product product);
 
 	public boolean update(Product product);
+	
+	public boolean delete(Product product);
 
 }

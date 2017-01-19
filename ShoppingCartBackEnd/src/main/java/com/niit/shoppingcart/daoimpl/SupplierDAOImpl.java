@@ -15,10 +15,10 @@ import org.springframework.transaction.annotation.Transactional;
 import com.niit.shoppingcart.dao.SupplierDAO;
 import com.niit.shoppingcart.model.Supplier;
 @Repository("supplierDAO")
-@EnableTransactionManagement
+
 public class SupplierDAOImpl implements SupplierDAO {
    
-	private static final Logger logger = LoggerFactory.getLogger(SupplierDAOImpl.class);
+
 
 	@Autowired
 	SessionFactory sessionFactory;
@@ -53,13 +53,6 @@ public class SupplierDAOImpl implements SupplierDAO {
 		}
 	}
 	
-
-	@Transactional
-	public Supplier get(String id) {
-		
-		return (Supplier) sessionFactory.getCurrentSession().get(Supplier.class,id);
-	}
-
 	@Transactional
 	public boolean update(Supplier supplier) {
 		try {
@@ -70,14 +63,14 @@ public class SupplierDAOImpl implements SupplierDAO {
 			supplier = (Supplier) sessionFactory.getCurrentSession().merge(supplier);
 			sessionFactory.getCurrentSession().update(supplier);
 			return true;
-		} catch (Exception e) {
+		} catch (HibernateException e) {
 
 			e.printStackTrace();
 			return false;
 		}
 
 	}
-
+   @Transactional
 	public boolean delete(Supplier supplier) {
 		try{
 			if(get(supplier.getId())!= null){
@@ -92,8 +85,17 @@ public class SupplierDAOImpl implements SupplierDAO {
 		return false ;
 	}
 			
-}
-}
+   }
+		@Transactional
+		public Supplier get(String id) {
+			return (Supplier) sessionFactory.getCurrentSession().get(Supplier.class,id);
+		}
+
+
+
+		
+	}
+
 	
 
 
