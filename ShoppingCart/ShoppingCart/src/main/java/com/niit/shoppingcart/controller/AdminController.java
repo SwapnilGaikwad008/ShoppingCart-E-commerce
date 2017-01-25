@@ -13,14 +13,13 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
-
 import com.niit.shoppingcart.dao.CategoryDAO;
 import com.niit.shoppingcart.dao.ProductDAO;
 import com.niit.shoppingcart.dao.SupplierDAO;
 import com.niit.shoppingcart.model.Category;
 import com.niit.shoppingcart.model.Product;
 import com.niit.shoppingcart.model.Supplier;
-import com.niit.shoppingcart.util.FileUtil;
+import com.niit.shoppingcart.util.Util;
 
 @Controller
 public class AdminController {
@@ -43,8 +42,7 @@ public class AdminController {
 	
 	@Autowired
 	private ProductDAO productDAO;
-	
-	//private String path = "resources/img/";
+	private String path = "\\resources\\img";
 
 	 @RequestMapping("/addcategory")
 	 public String Addcategory(Model model, HttpSession session, @ModelAttribute("id") String id, @ModelAttribute("name") String name, @ModelAttribute("description") String description)
@@ -82,15 +80,19 @@ public class AdminController {
     	  session.setAttribute("supplier", supplier);
     	  List<Supplier> supplierList = supplierDAO.list();
     	  session.setAttribute("SupplierList", supplierList);
-      }else
-    	  model.addAttribute("message", "Error Occured");
-          model.addAttribute("UserClickedSUPPLIER", "true");
-          
+      }
+      else
+      {
+    	  model.addAttribute("message", "Error Occured"); 
+      }
+      model.addAttribute("UserClickedSUPPLIER", "true");
           return "admin";
 	 }
 	  
+
+	 
 	 @RequestMapping("/addproduct")
-	 public String Addproduct(Model model, HttpSession session, @ModelAttribute("id") String id, @ModelAttribute("name") String name, @ModelAttribute("price") int price,@ModelAttribute("stock") String stock, @ModelAttribute("category_id") String category_id, @ModelAttribute("supplier_id") String supplier_id, @ModelAttribute("description") String description)
+	 public String Addproduct(Model model, HttpSession session, @RequestParam("image") MultipartFile file,  @ModelAttribute("id") String id, @ModelAttribute("name") String name, @ModelAttribute("price") int price,@ModelAttribute("stock") String stock, @ModelAttribute("category_id") String category_id, @ModelAttribute("supplier_id") String supplier_id, @ModelAttribute("description") String description)
 	 {
 		 product.setId(id);
 		 product.setName(name);
@@ -102,7 +104,7 @@ public class AdminController {
 	
 		 if(productDAO.save(product))
 		 {
-	//		 FileUtil.upload(path, file, product.getId()+".jpg");
+		 Util.upload(path, file, product.getId()+".jpg");
 			 model.addAttribute("message", "Product added");
 			 session.setAttribute("product", product);
 			 List<Product> productList = productDAO.list();

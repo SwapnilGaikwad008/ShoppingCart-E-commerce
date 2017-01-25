@@ -26,7 +26,7 @@ public class OrderWebflow  implements Serializable{
 	
  
 	@Autowired
-	private OrdersDAO orderDAO;
+	private OrdersDAO ordersDAO;
 	
 	@Autowired 
 	CartDAO cartDAO;
@@ -98,7 +98,7 @@ log.debug("starting of the method addPaymentMethod");
 		
 		orders.setUser_id(user.getId());
 		orders.setTotalAmount(product.getPrice());
-	//	ordersDAO.saveOrUpdate(orders);
+		ordersDAO.saveOrUpdate(orders);
 		
 log.debug("Ending of the method confirmOrder");
 		

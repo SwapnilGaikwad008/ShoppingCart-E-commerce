@@ -20,7 +20,7 @@ ${message }
   <h1 class="well center"><center>Add Product</center></h1>
   <div class="col-lg-12 well">
     <div class="row">
-    <form  action="addproduct"  method="post">  <!-- commandName="product" enctype = "multipart/form-data" -->
+    <form  action="addproduct"  method="post" enctype = "multipart/form-data" >
       <div class="col-sm-12">
         <div class="row">
           <div>
@@ -28,46 +28,57 @@ ${message }
           </div>
           <div class="col-sm-6 form-group">
               <h4>ID</h4>
-                <input type="text"  name="id" placeholder="ID" required>
+                <input type="text"  name="id" placeholder="ID"  class="form-control"required ></input>
               </div>
+                  
 
               <div class="col-sm-6 form-group">
               <h4>Name</h4>
-                <input type="name" name="name" placeholder="Name" required>
+                <input type="name" name="name" placeholder="Name" class="form-control" required ></input>
               </div>
            <div class="col-sm-6 form-group">
               <h4>Stock</h4>
-                <input type="number"  name="stock" placeholder="Stock" required>
+                <input type="number"  name="stock" placeholder="Stock" class="form-control" required ></input>
               </div>
 
 
                <div class="col-sm-6 form-group">
               <h4>Price</h4>
-            <input type="number"  name="price" placeholder="Price" required>
+            <input type="number"  name="price" placeholder="Price" class="form-control" required ></input>
               </div>
 
-                 <div class="col-sm-6 form-group">
-              <h4>Category_Id</h4>
-                 <input type="text"  name="category_id" placeholder="ID" required>
-              </div>
+                 <div>
+  <label >Category-ID</label>
+     <select name="category_id">
+    <c:forEach var="list" items="${categoryList}">
+    <option>${list.id}</option>
+    </c:forEach>
+    </select>
+    </div>
+    <br>
+     <div>
 
-              <div class="col-sm-6 form-group">
-              <h4>Supplier_Id</h4>
-                <input type="text"  name="supplier_id" placeholder="ID" required>
-              </div>
+              <div>
+  <label >Supplier-ID</label>
+     <select name="supplier_id">
+    <c:forEach var="list" items="${supplierList}">
+    <option>${list.id}</option>
+    </c:forEach>
+    </select>
+    </div>
 
 
               <div class="col-sm-12 form-group">
               <h4>Description</h4>
-                <textarea type="name"  name="description" placeholder="Description" required> </textarea>
+                <textarea type="name"  name="description" placeholder="Description"  required> </textarea>
               </div>
               
-       <!--       <div class="col-sm-6 form-group">
-              <h4>Image</h4>
-                <input type="file"  name="image"  path="image" >
-              </div>
-            -->
             
+             
+            <div class="col-sm-6 form-group">
+              <h4>Product Image</h4>
+                <input type="file"  name="image"  placeholder="Image" path="image" required ></input>
+              </div>
             
             <div class="form-actions">
               <button type="submit" class="btn  btn-lg btn ">Add Product</button>

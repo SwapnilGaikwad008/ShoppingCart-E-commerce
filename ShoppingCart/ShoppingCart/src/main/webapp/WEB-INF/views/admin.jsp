@@ -65,6 +65,7 @@
 	<jsp:include page="editproduct.jsp" />
 	</c:if>
 	
+	
 
 	
 </body>

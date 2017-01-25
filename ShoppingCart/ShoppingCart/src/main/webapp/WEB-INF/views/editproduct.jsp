@@ -46,19 +46,24 @@ ${message }
               </div>
 
                  <div class="col-sm-6 form-group">
-              <h4>Category_Id</h4>
-                 <input type="text"  name="category_id" placeholder="ID" required value=${product.category_id}></input>
+              <h4>Category Name</h4>
+                 <input type="text"  name="category_id" placeholder="ID" required value=${product.category.name}></input>
               </div>
 
               <div class="col-sm-6 form-group">
-              <h4>Supplier_Id</h4>
-                <input type="text"  name="supplier_id" placeholder="ID" required value=${product.supplier_id}></input>
+              <h4>Supplier Name</h4>
+                <input type="text"  name="supplier_id" placeholder="ID" required value=${product.supplier.name}></input>
               </div>
 
 
               <div class="col-sm-12 form-group">
               <h4>Description</h4>
                 <textarea type="name" name="description" placeholder="Description" required> ${product.description}</textarea>
+              </div>
+              
+              <div class="col-sm-6 form-group">
+              <h4>Image</h4>
+                <input type="file"  name="image"  CommandName="product" path="image" method="post" >
               </div>
 
             <div class="form-actions">

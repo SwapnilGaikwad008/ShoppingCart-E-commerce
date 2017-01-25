@@ -13,6 +13,8 @@
   </head>
 <body>
 
+
+
 please login with credentials here....
 <div class="container" >
     <h1 class="well center"><center>Login</center></h1>
@@ -24,7 +26,7 @@ please login with credentials here....
                     <div class="col-sm-12 form-group">
                             <h4>E-mail ID</h4>
                                 <input type="text" placeholder="Enter E-Mail Id.."
-                                    class="form-control" name="id" ></input>
+                                    class="form-control" name="emailId" ></input>
                             </div>
 
                             <div class="col-sm-12 form-group">

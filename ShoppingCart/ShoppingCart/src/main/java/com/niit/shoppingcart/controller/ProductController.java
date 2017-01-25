@@ -9,7 +9,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
+import com.niit.shoppingcart.dao.CategoryDAO;
 import com.niit.shoppingcart.dao.ProductDAO;
 import com.niit.shoppingcart.dao.SupplierDAO;
 import com.niit.shoppingcart.model.Category;
@@ -19,6 +22,11 @@ import com.niit.shoppingcart.model.Supplier;
 @Controller
 public class ProductController {
 	
+	
+	public  ProductController(){
+		
+	}
+	
 	@Autowired
 	 Product product;
 	
@@ -27,6 +35,9 @@ public class ProductController {
 	
 	@Autowired
 	Category category;
+	
+	@Autowired
+	CategoryDAO categoryDAO;
 	
 	@Autowired
 	Supplier supplier;
@@ -45,8 +56,7 @@ public class ProductController {
 		String msg = "successfully done";
 		if(!flag==true)
 			msg = "Not successful";
-		return "/forward:/producttable";
-		
+		return "forward:/producttable";	
 	}
 	
 	@RequestMapping("manage_product_edit")
@@ -83,5 +93,20 @@ public class ProductController {
 	 return "admin";
 	}
 	
-	
+	 @RequestMapping(value="/displayProduct")
+	 public ModelAndView displayProduct(@RequestParam(value = "categoryId") String categoryId){
+		 
+		 ModelAndView mv=new ModelAndView("/index");
+		
+		 List<Product> productList = productDAO.listByCategory(categoryId);
+		 if(productList != null){
+			 mv.addObject("successMsg", productList.size() + "product(s) found !!!");
+			 mv.addObject("productList", productList);
+			 mv.addObject("productListLoaded", true);
+		 }else{
+			 mv.addObject("successMsg", "No products found !!!");
+		 }
+ 
+		 return mv;
+	 }
 }

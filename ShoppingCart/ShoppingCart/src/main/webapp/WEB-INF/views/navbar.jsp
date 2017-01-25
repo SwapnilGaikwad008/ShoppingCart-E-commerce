@@ -3,6 +3,9 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%@ taglib prefix="c" 
            uri="http://java.sun.com/jsp/jstl/core" %>
+           <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
+<%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
@@ -23,43 +26,30 @@
     </div>
     <ul class="nav navbar-nav">
       
-      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Causal Shoes<span class="caret"></span></a>
-        <ul class="dropdown-menu">
-          <li><a href="#">Shoes</a></li>
-          <li><a href="#">Page 1-2</a></li>
-          <li><a href="#">Page 1-3</a></li>
-        </ul>
-      </li>
-      
-       <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Formal Shoes<span class="caret"></span></a>
-        <ul class="dropdown-menu">
-          <li><a href="#">Page 1-1</a></li>
-          <li><a href="#">Page 1-2</a></li>
-          <li><a href="#">Page 1-3</a></li>
-        </ul>
-      </li>
-      
-       <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Custome Shoes<span class="caret"></span></a>
-        <ul class="dropdown-menu">
-          <li><a href="#">Page 1-1</a></li>
-          <li><a href="#">Page 1-2</a></li>
-          <li><a href="#">Page 1-3</a></li>
-        </ul>
-      </li>
+<c:forEach items="${categoryList}" var="category">
+        <li><a href="<c:url value='/displayProduct?categoryId=${category.id}'/>">${category.name}</a>
+        </li>
+        </c:forEach>
      
     </ul>
-  
-    
-    
-<form class="navbar-form navbar-right" style="margin-left: 0px">
+ 
+ <form class="navbar-form navbar-right" style="margin-left: 0px">
         <div class="form-group">
           <input type="text" class="form-control" placeholder="Search">
         </div>
          <ul class="nav navbar-nav navbar-right" style="margin-top: -6px;margin-bottom: -7px";>
-      <li><a href="registration"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-      <li><a href="login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+         <c:choose>
+		    <c:when test="${loggedOut}">
+		        <li><a href="registration"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+      			<li><a href="login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+		    </c:when>    
+		    <c:otherwise>
+		        <li><a href="logout"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+		    </c:otherwise>
+		</c:choose>
     </ul>
       </form>
+      
 
  </div>
 

@@ -11,7 +11,7 @@ http://www.springframework.org/schema/context/spring-context-4.0.xsd
 http://www.springframework.org/schema/mvc 
 http://www.springframework.org/schema/mvc/spring-mvc.xsd">
   
-       <mvc:annotation-driven/>
+      
        
     <context:component-scan base-package="com.niit.*" /> 
 
@@ -20,7 +20,14 @@ http://www.springframework.org/schema/mvc/spring-mvc.xsd">
         <property name="suffix" value=".jsp"/>
     </bean>
     
-
-    <mvc:default-servlet-handler />
+    <bean id="multipartResolver"
+      class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+       <property name="maxUploadSize" value="100000"></property>
+      
+      </bean>
+      
+<!--       <mvc:resources  mapping="/resources/**" location="/resources/"/>
+ --> <mvc:annotation-driven/>
+ <mvc:default-servlet-handler />
 
 </beans>

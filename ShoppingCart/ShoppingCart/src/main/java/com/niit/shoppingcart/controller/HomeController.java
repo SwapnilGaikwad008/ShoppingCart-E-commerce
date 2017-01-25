@@ -52,13 +52,12 @@ public class HomeController {
 	public ModelAndView onLoad(HttpSession session) {
 		log.debug("Starting of the method onLoad");
 		ModelAndView mv = new ModelAndView("/index");
+		mv.addObject("loggedOut", "true");
+		
 		session.setAttribute("category", category);
 		session.setAttribute("product", product);
 		session.setAttribute("supplier", supplier);
-		
-		
 		session.setAttribute("categoryList", categoryDAO.list());
-		
 		session.setAttribute("supplierList", supplierDAO.list());
 
 		log.debug("Ending of the method onLoad");

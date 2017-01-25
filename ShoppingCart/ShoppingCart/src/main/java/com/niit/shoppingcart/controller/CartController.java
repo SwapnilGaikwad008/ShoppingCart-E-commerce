@@ -59,11 +59,11 @@ public class CartController {
 	return "index";	
 	}
 	@RequestMapping(value="/cart_add",method = RequestMethod.GET)
-	public ModelAndView addToCart(@RequestParam("productName") String productName , HttpSession session)
+	public ModelAndView addToCart(@RequestParam("productname") String productname , HttpSession session)
 	{
 		
 		//get the product based on product name
-		Product product =productDAO.get(productName);
+		Product product =productDAO.get(productname);
 
 		
 		cart.setProductName(product.getName());
@@ -72,12 +72,7 @@ public class CartController {
 		
 		String loggedInUserMailID = (String)session.getAttribute("loggedInUserid");
 		
-		
-		
-	
-		
 	    cart.setId(ThreadLocalRandom.current().nextInt(100, 1000000 + 1));
-	
 	
 	cartDAO.save(cart);
 	
@@ -90,19 +85,16 @@ public class CartController {
 	@RequestMapping("/cart_delete")
 	public String removeCart(@RequestParam("id") int id, Model model) throws Exception
 	{
-		
 		try{
-			
 			cartDAO.delete(id);
 			model.addAttribute("successMessage" , "Successfully Removed from your cart");
 			}
 		catch(Exception e)
 		{
-			model.addAttribute("message" , e.getMessage());
+			model.addAttribute("message" , "not deleted");
 			e.printStackTrace();
 		}
-		
-		return "redirect:/index";
+		return "forward:/index";
 	}
 
  

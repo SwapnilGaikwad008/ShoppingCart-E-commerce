@@ -17,23 +17,15 @@
 
 <div class="container">
 <ul class=" nav nav-pills" role="tablist">
-   <c:forEach items="${categoryList}" var="category">
-       <li class="dropdown" ><a href="#" class ="dropdown-toggle"
-            data-toggle="dropdown"  role="menu" >${category.name}<span
-                 class="caret"></span></a>
-           <ul class= "dropdown menu" >
-    
-      <li><a href="manage_product/get/${product.id}">${product.name}</a></li> 
-   
+<c:forEach items="${categoryList}" var="category">
+        <li><a href="#"> ${category.name}</a>
+        </li>
+        </c:forEach>
    </ul>
 
- 
-  
-    </li>
-</c:forEach>
 </ul> 
 </div>
-<hr color="red" font="italic">
+
 </body>
 
 </html>

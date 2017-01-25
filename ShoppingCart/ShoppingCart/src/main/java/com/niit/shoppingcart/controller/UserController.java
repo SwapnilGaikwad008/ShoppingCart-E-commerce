@@ -68,7 +68,7 @@ public class UserController {
 	 * @return it will return data and page name where to return
 	 */
 	@RequestMapping(value = "/validate", method = RequestMethod.GET)
-	public ModelAndView validate(@RequestParam(value = "id") String UserID,
+	public ModelAndView validate(@RequestParam(value = "emailId") String emailId,
 			@RequestParam(value = "password") String password) {
 		log.debug("Starting of the method validate");
 
@@ -76,7 +76,7 @@ public class UserController {
 		ModelAndView mv = new ModelAndView("/index");
 		ModelAndView mu = new ModelAndView("/adminHome");
 		
-		User = UserDAO.isValidUser(UserID, password);
+		User = UserDAO.isValidUser(emailId, password);
 		// if the record exist with this UserID and password it will return User
 		// details else will return null
 
@@ -87,16 +87,18 @@ public class UserController {
 			session.setAttribute("loggedInUserID", User.getId());
 
 			session.setAttribute("User", User); //
+			session.setAttribute("supplier", supplier);
+			session.setAttribute("supplierList", supplierDAO.list());
+
+			session.setAttribute("category", category);
+			session.setAttribute("categoryList", categoryDAO.list());
+			
+			mv.addObject("loggedOut", "false");
 
 			if (User.getRole().equals("ROLE_ADMIN")) {
 				log.debug("Logged in as Admin");
 				mv.addObject("isAdmin", "true");
-				session.setAttribute("supplier", supplier);
-				session.setAttribute("supplierList", supplierDAO.list());
-
-				session.setAttribute("category", category);
-				session.setAttribute("categoryList", categoryDAO.list());
-				 
+				
 				return mu; 
 
 			} else {
@@ -133,7 +135,7 @@ public class UserController {
 		session.setAttribute("category", category);
 		session.setAttribute("categoryList", categoryDAO.list());
 
-		mv.addObject("logoutMessage", "You successfully logged out");
+		mv.addObject("successMsg", "You successfully logged out");
 		mv.addObject("loggedOut", "true");
 		
 		 Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -154,7 +156,7 @@ public class UserController {
 		ModelAndView mv = new ModelAndView("index");
 		if (UserDAO.get(User.getId()) == null) {
 			User.setRole("ROLE_USER"); // all the Users are end Users by default
-			UserDAO. saveOrUpdate(User);
+			UserDAO. save(User);
 			log.debug("You are successfully register");
 			mv.addObject("successMsg", "You are successfully registered " + User.getName() + " try logging in now !!!");
 		} else {
