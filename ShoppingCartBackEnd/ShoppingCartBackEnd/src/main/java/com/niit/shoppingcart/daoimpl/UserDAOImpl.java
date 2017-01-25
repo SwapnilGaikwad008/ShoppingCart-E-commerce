@@ -1,6 +1,8 @@
 package com.niit.shoppingcart.daoimpl;
 
 
+
+
 import java.util.List;
 
 import org.hibernate.Criteria;
@@ -99,14 +101,13 @@ public class UserDAOImpl implements UserDAO {
 	}
 
 	@Transactional
-	public User isValidUser(String id, String password)
+	public User isValidUser(String emailId, String password)
 
 	{
 		log.debug("Starting of the method : isValidUser ");
-		log.info("The user id :" + id);
+		log.info("The user email id :" + emailId);
 
-		// Select * from User where id = 'id' and password = 'password';
-		String hql = "from User where id = " + "'" + id + "'" + " and " + "password = " + "'" + password + "'";
+		String hql = "from User where mail = " + "'" + emailId + "'" + " and " + "password = " + "'" + password + "'";
 
 		log.info(" The query is :" + hql);
 
@@ -126,6 +127,16 @@ public class UserDAOImpl implements UserDAO {
 
 		return null;
 
+	}
+
+	public boolean save(User user) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	public void update(String id) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

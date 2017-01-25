@@ -25,6 +25,7 @@ public class ProductDAOImpl implements ProductDAO {
 		this.sessionFactory = sessionFactory;
 	}
 
+	
 	@Transactional
 	public List<Product> list() {
 
@@ -35,6 +36,14 @@ public class ProductDAOImpl implements ProductDAO {
 		return query.list();
 
 	}
+	
+	@Transactional
+	public List<Product> listByCategory(String categoryId){
+		String hql  = "from Product where category_id = '" + categoryId + "'";
+		Query query = sessionFactory.getCurrentSession().createQuery(hql);
+		return query.list();
+	}
+	
 	@Transactional
 	public boolean save(Product product) {
 
@@ -96,6 +105,6 @@ public class ProductDAOImpl implements ProductDAO {
 
 	}
 
-
+	
 }
 

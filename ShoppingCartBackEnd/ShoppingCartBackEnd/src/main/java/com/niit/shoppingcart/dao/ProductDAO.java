@@ -7,6 +7,8 @@ import com.niit.shoppingcart.model.Product;
 public interface ProductDAO {
 
 	public List<Product> list();
+	
+	public List<Product> listByCategory(String categoryId);
 
 	public Product get(String id);
 

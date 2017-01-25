@@ -12,7 +12,9 @@ public interface UserDAO {
 
 	public User isValidUser(String id, String password);
 
-	public void saveOrUpdate(User user);
+	public boolean save(User user);
+
+	public void update(String id);
 
 	public void delete(String id);
 	
