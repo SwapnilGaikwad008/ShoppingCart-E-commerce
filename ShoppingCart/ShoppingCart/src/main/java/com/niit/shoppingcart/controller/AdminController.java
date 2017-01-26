@@ -42,7 +42,7 @@ public class AdminController {
 	
 	@Autowired
 	private ProductDAO productDAO;
-	private String path = "\\resources\\img";
+	private String path = "D:\\workspace\\ShoppingCart\\src\\main\\webapp\\resources\\img";
 
 	 @RequestMapping("/addcategory")
 	 public String Addcategory(Model model, HttpSession session, @ModelAttribute("id") String id, @ModelAttribute("name") String name, @ModelAttribute("description") String description)

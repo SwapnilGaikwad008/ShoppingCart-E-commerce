@@ -30,5 +30,7 @@ ${successMsg}
 	<jsp:include page="productdisplay.jsp"></jsp:include>
 </c:if>
 
+
+
 </body>
 </html>

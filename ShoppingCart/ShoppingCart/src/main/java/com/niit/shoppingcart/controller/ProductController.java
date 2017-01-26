@@ -100,7 +100,7 @@ public class ProductController {
 		
 		 List<Product> productList = productDAO.listByCategory(categoryId);
 		 if(productList != null){
-			 mv.addObject("successMsg", productList.size() + "product(s) found !!!");
+			
 			 mv.addObject("productList", productList);
 			 mv.addObject("productListLoaded", true);
 		 }else{
@@ -109,4 +109,6 @@ public class ProductController {
  
 		 return mv;
 	 }
+	 
+	
 }
