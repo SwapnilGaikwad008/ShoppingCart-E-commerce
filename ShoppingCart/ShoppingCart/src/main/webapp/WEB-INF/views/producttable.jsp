@@ -24,6 +24,7 @@
         <th>STOCK</th>
         <th>PRICE</th>
         <th>CATEGORY_ID</th>
+        <th>SUBCATEGORY_ID</th>
         <th>SUPPLIER_ID</th>
         <th>DESCRIPTION</th>
          <th>EDIT</th>
@@ -41,6 +42,7 @@
              <td>${product.stock}</td>
               <td>${product.price}</td>
                <td>${product.category.name}</td>
+               <td>${product.subcategory.name}</td>
                 <td>${product.supplier.name}</td>
                  <td>${product.description}</td>
             <td><a href="<c:url value='/manage_product_edit?id=${product.id}'/>" button class="btn btn-success btn-sm">Edit</a></td>

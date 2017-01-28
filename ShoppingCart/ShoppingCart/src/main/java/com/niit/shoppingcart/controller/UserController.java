@@ -19,9 +19,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.niit.shoppingcart.dao.CategoryDAO;
+import com.niit.shoppingcart.dao.ProductDAO;
+import com.niit.shoppingcart.dao.SubCategoryDAO;
 import com.niit.shoppingcart.dao.SupplierDAO;
 import com.niit.shoppingcart.dao.UserDAO;
 import com.niit.shoppingcart.model.Category;
+import com.niit.shoppingcart.model.SubCategory;
 import com.niit.shoppingcart.model.Supplier;
 import com.niit.shoppingcart.model.User;
 
@@ -50,9 +53,19 @@ public class UserController {
 
 	@Autowired
 	private SupplierDAO supplierDAO;
+	
+	@Autowired
+	private SubCategoryDAO subcategoryDAO;
+
+	@Autowired
+	private SubCategory subcategory;
+	
 
 	@Autowired
 	private Supplier supplier;
+	
+	@Autowired
+	private ProductDAO productDAO;
 
 	
 	@Autowired
@@ -92,6 +105,11 @@ public class UserController {
 
 			session.setAttribute("category", category);
 			session.setAttribute("categoryList", categoryDAO.list());
+			
+			session.setAttribute("subcategory", subcategory);
+			session.setAttribute("subcategoryList", subcategoryDAO.list());
+			
+			session.setAttribute("productList", productDAO.list());
 			
 			mv.addObject("loggedOut", "false");
 
@@ -134,6 +152,8 @@ public class UserController {
 		session = request.getSession(true);
 		session.setAttribute("category", category);
 		session.setAttribute("categoryList", categoryDAO.list());
+		session.setAttribute("subcategoryList", subcategoryDAO.list());
+		session.setAttribute("productList", productDAO.list());
 
 		mv.addObject("successMsg", "You successfully logged out");
 		mv.addObject("loggedOut", "true");

@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.niit.shoppingcart.dao.CategoryDAO;
+import com.niit.shoppingcart.dao.ProductDAO;
 import com.niit.shoppingcart.dao.SupplierDAO;
 import com.niit.shoppingcart.model.Category;
 import com.niit.shoppingcart.model.Product;
@@ -41,6 +42,9 @@ public class HomeController {
 	@Autowired
 	private Product product;
 
+	@Autowired
+	private ProductDAO productDAO;
+	
 	/**
 	 * Category list will load and set to session
 	 * 
@@ -93,4 +97,7 @@ public class HomeController {
 		log.debug("Ending of the method reDirectToHome");
 		return "/adminHome";
 	}
+
+	
+	
 }

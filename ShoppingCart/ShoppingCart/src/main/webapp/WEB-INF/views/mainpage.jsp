@@ -26,11 +26,13 @@ ${successMsg}
 <jsp:include page="registration.jsp"></jsp:include>
 </c:if>
 
-<c:if test="${productListLoaded}">
-	<jsp:include page="productdisplay.jsp"></jsp:include>
+<c:if test="${ShowProductsForSubCategory}">
+<jsp:include page="productdisplay.jsp" />
+</c:if>	
+			
+<c:if test="${!empty selectedProduct.product.id}">
+ <jsp:include page="selectedProduct.jsp"></jsp:include>
 </c:if>
-
-
-
+			
 </body>
 </html>

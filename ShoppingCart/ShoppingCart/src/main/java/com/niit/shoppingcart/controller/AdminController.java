@@ -15,9 +15,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import com.niit.shoppingcart.dao.CategoryDAO;
 import com.niit.shoppingcart.dao.ProductDAO;
+import com.niit.shoppingcart.dao.SubCategoryDAO;
 import com.niit.shoppingcart.dao.SupplierDAO;
 import com.niit.shoppingcart.model.Category;
 import com.niit.shoppingcart.model.Product;
+import com.niit.shoppingcart.model.SubCategory;
 import com.niit.shoppingcart.model.Supplier;
 import com.niit.shoppingcart.util.Util;
 
@@ -39,10 +41,16 @@ public class AdminController {
 	@Autowired
 	private CategoryDAO categoryDAO;
 	
+	@Autowired
+	private SubCategoryDAO subCategoryDAO;
+
+	@Autowired
+	private SubCategory subcategory;
+
 	
 	@Autowired
 	private ProductDAO productDAO;
-	private String path = "D:\\workspace\\ShoppingCart\\src\\main\\webapp\\resources\\img";
+	private String path = "\\resources\\img";
 
 	 @RequestMapping("/addcategory")
 	 public String Addcategory(Model model, HttpSession session, @ModelAttribute("id") String id, @ModelAttribute("name") String name, @ModelAttribute("description") String description)
@@ -89,10 +97,31 @@ public class AdminController {
           return "admin";
 	 }
 	  
+	 
+	 @RequestMapping("/addsubcategory")
+		public String Addsubcategory(Model model, HttpSession session, @ModelAttribute("id") String id,
+				@ModelAttribute("name") String name, @ModelAttribute("description") String description) {
+			subcategory.setId(id);
+			subcategory.setName(name);
+			subcategory.setDescription(description);
+			if (subCategoryDAO.save(subcategory))
+
+			{
+				model.addAttribute("message", "Sub Category added");
+
+				session.setAttribute("subcategory", subcategory);
+				List<SubCategory> categoryList = subCategoryDAO.list();
+				session.setAttribute("SubCategoryList", categoryList);
+			} else
+				model.addAttribute("message", "Error occured");
+			model.addAttribute("UserClickedSUBCATEGORY", "true");
+
+			return "admin";
+		}
 
 	 
 	 @RequestMapping("/addproduct")
-	 public String Addproduct(Model model, HttpSession session, @RequestParam("image") MultipartFile file,  @ModelAttribute("id") String id, @ModelAttribute("name") String name, @ModelAttribute("price") int price,@ModelAttribute("stock") String stock, @ModelAttribute("category_id") String category_id, @ModelAttribute("supplier_id") String supplier_id, @ModelAttribute("description") String description)
+	 public String Addproduct(Model model, HttpSession session, @RequestParam("image") MultipartFile file, @ModelAttribute("subcategory_id") String subcategory_id,  @ModelAttribute("id") String id, @ModelAttribute("name") String name, @ModelAttribute("price") int price,@ModelAttribute("stock") String stock, @ModelAttribute("category_id") String category_id, @ModelAttribute("supplier_id") String supplier_id, @ModelAttribute("description") String description)
 	 {
 		 product.setId(id);
 		 product.setName(name);
@@ -100,6 +129,7 @@ public class AdminController {
 		 product.setStock(stock);
 		 product.setDescription(description);
 		 product.setCategory_id(category_id);
+       	product.setSubcategory_id(subcategory_id);
 		 product.setSupplier_id(supplier_id);
 	
 		 if(productDAO.save(product))
@@ -210,5 +240,25 @@ public class AdminController {
 		 return "admin";
 	 }
 	 
+	 @RequestMapping("/subcategorytable")
+		public String subcategorytable(Model model, HttpSession session)
+
+		{
+			model.addAttribute("UserClickedViewSubCategoryTable", "true");
+			List<SubCategory> categoryList = subCategoryDAO.list();
+			session.setAttribute("SubCategoryList", categoryList);
+
+			return "admin";
+		}
+
+
+		@RequestMapping("/subcategory")
+		public String SubCategory(Model model)
+
+		{
+			model.addAttribute("UserClickedSUBCATEGORY", "true");
+			return "admin";
+		}
+
 	 
 }

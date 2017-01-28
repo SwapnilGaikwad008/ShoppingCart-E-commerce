@@ -48,13 +48,13 @@
     </action-state>
     
     <view-state id="orderConfirm" view="/orderConfirmed">
-    <transition on="finalIndex" to="toindex"/>
+    <transition on="finalIndex" to="toIndex"/>
     </view-state>
     
-    <end-state id= "toindex" view="externalRedirect:contextRelative:/" />
+    <end-state id= "toIndex" view="externalRedirect:contextRelative:/" />
     
     <global-transitions>
-    <transition on ="cancel" to ="toindex"/>
+    <transition on ="cancel" to ="toIndex"/>
     </global-transitions>
     
    </flow>

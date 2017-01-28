@@ -12,26 +12,47 @@
 <title>Shoes</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<script>
+    function initializeDropdown() {
+    	$('.dropdown-toggle').dropdown();
+    }
+</script>
+
 </head>
 
 
-<body>
+<body onload="initializeDropdown();">
 
 <nav class="navbar navbar-default">
   <div class="container-fluid">
     <div class="navbar-header">
-      <a class="navbar-brand" href="#">WebSiteName</a>
+      <a class="navbar-brand" href="#">Paduka</a>
     </div>
+    
+    
     <ul class="nav navbar-nav">
-      
-<c:forEach items="${categoryList}" var="category">
-        <li><a href="<c:url value='/displayProduct?categoryId=${category.id}'/>">${category.name}</a>
-        </li>
-        </c:forEach>
-     
+    <c:forEach items="${categoryList}" var="category">
+    
+    <li class="dropdown"><a class="dropdown-toggle" id="dLabel-${category.name}" data-toggle="dropdown" href="#">${category.name}<span class="caret"></span></a>
+    
+    	<ul class="dropdown-menu" aria-labelledby="dLabel-${category.name}">
+    	
+    		<c:forEach items="${subcategoryList}" var="subcategory">
+          		<li><a href="<c:url value='/displayProduct?categoryId=${category.id}&subCategoryId=${subcategory.id}'/>">${subcategory.name}</a></li>
+          	</c:forEach>
+        </ul>
+    
+    </li>
+    
+    </c:forEach>
     </ul>
+    
+
  
  <form class="navbar-form navbar-right" style="margin-left: 0px">
         <div class="form-group">

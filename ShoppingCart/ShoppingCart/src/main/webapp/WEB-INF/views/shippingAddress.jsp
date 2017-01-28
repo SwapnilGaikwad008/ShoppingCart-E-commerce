@@ -22,35 +22,35 @@
         <form:form role="form" action="${flowExecutionUrl}&_eventId=submitShippingAddress"  commandName="shippingAddress" method="post">
 
 
-         <center>   <Strong>Shipping Address:</Strong></center>
+         <center><Strong>Shipping Address:</Strong></center>
             <br>
             <div class="form-group">
               <label for="address">Address</label>
               <form:textarea type="text" class="form-control"
-                path="line1" required></form:textarea>
+                path="line1" ></form:textarea>
             </div>
             <div class="row">
               <div class="col-sm-6 form-group">
                 <label for="city">City</label>
                 <form:input type="text" class="form-control"
-                  path="city" required></form:input>
+                  path="city" ></form:input>
               </div>
               <div class="col-sm-6 form-group">
                 <label for="state">State</label>
                 <form:input type="text" class="form-control"
-                  path="state" required></form:input>
+                  path="state" ></form:input>
               </div>
             </div>
             <div class="row">
               <div class="col-sm-6 form-group">
                 <label for="country">Country</label>
                 <form:input type="text" class="form-control"
-                  path="country" required></form:input>
+                  path="country" ></form:input>
               </div>
               <div class="col-sm-6 form-group">
                 <label for="zipcode">Zipcode</label>
                 <form:input type="text" class="form-control"
-                  path="zipcode"  pattern="^[1-9][0-9]{5}$"  required></form:input>
+                  path="zipcode"  pattern="^[1-9][0-9]{5}$"  ></form:input>
               </div>
             </div>
             <input type="hidden" name="_flowExecutionKey" />

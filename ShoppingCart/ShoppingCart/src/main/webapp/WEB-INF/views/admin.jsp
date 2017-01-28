@@ -65,6 +65,24 @@
 	<jsp:include page="editproduct.jsp" />
 	</c:if>
 	
+	<c:if test="${UserClickedSUBCATEGORY}">
+		<jsp:include page="subcategory.jsp" />
+	</c:if>
+
+
+	<c:if test="${UserClickedViewSubCategoryTable}">
+		<jsp:include page="subcategorytable.jsp" />
+	</c:if>
+
+
+	<c:if test="${UserClickedSubCategoryEDIT}">
+		<jsp:include page="editsubcategory.jsp" />
+	</c:if>
+
+	<c:if test="${EditSubCategory }">
+		<jsp:include page="editsubcategory.jsp" />
+	</c:if>
+	
 	
 
 	

@@ -40,8 +40,9 @@
   
            <div class="form-group last">
                             <div class="col-sm-offset-1 col-sm-11">
-                                <button type="submit" class="btn btn-default btn-md">Confirm Order</button>
-                                <button type="reset" class="btn btn-default btn-md" style="float:right">Reset</button>
+                                <input type="submit" name="_eventID_submitPaymentMethod"
+                 class="btn btn-md btn-success" value="Save">
+<a href="${flowExecutionUrl}&_eventId=cancel" type="button" class="btn btn-md btn-danger">Cancel</a>
                             </div>
                         </div>
 

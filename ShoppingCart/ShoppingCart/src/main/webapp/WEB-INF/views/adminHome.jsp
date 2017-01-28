@@ -21,6 +21,7 @@
 			<ul class="nav navbar-nav">
   	 <li><a style="font-size: 20px;" href="usertable">Manage</a></li>
    <li><a style="font-size: 20px;" href="category">Category</a></li>
+   <li><a style="font-size: 20px;" href="subcategory">SubCategory</a></li>
    <li><a style="font-size: 20px;" href="supplier">Supplier</a></li>
     <li><a style="font-size: 20px;" href="product">Product</a></li>
 
