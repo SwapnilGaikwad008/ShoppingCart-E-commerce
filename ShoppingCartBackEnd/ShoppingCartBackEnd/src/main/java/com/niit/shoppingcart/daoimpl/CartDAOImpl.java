@@ -1,6 +1,7 @@
 package com.niit.shoppingcart.daoimpl;
 
 
+import java.io.Serializable;
 import java.util.List;
 
 import org.hibernate.HibernateException;
@@ -14,7 +15,7 @@ import com.niit.shoppingcart.dao.CartDAO;
 import com.niit.shoppingcart.model.Cart;
 
 @Repository("CartDAO")
-public class CartDAOImpl implements CartDAO{
+public class CartDAOImpl implements CartDAO, Serializable{
 
 	@Autowired
 	SessionFactory sessionFactory;

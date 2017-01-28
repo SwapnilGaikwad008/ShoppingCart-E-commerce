@@ -1,5 +1,7 @@
 package com.niit.shoppingcart.model;
 
+import java.io.Serializable;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -13,7 +15,7 @@ import org.springframework.stereotype.Component;
 @Entity
 @Table    //if the table name and domain object name is same
 @Component     //user instance       // do not use User u = new User()
-public class User {
+public class User   implements Serializable{
 	
 	
 	//what are the properties  same as db table fields

@@ -1,5 +1,7 @@
 package com.niit.shoppingcart.model;
 
+import java.io.Serializable;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -19,7 +21,7 @@ import org.springframework.web.multipart.MultipartFile;
 @Component
 
 
-   public class Product {
+   public class Product implements Serializable {
 	
 	@Transient
 	private MultipartFile image;

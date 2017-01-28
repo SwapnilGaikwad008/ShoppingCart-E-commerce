@@ -1,5 +1,6 @@
 package com.niit.shoppingcart.model;
 
+import java.io.Serializable;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -20,7 +21,7 @@ import com.niit.shoppingcart.dao.ProductDAO;
 @Component
 
 
-public class Category {
+public class Category implements Serializable {
 	@Id
 	@Column(name = "id")
 	private String id;

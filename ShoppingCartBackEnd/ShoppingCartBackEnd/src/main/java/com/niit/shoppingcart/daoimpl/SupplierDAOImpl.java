@@ -1,5 +1,6 @@
 package com.niit.shoppingcart.daoimpl;
 
+import java.io.Serializable;
 import java.util.List;
 
 import org.hibernate.HibernateException;
@@ -16,7 +17,7 @@ import com.niit.shoppingcart.dao.SupplierDAO;
 import com.niit.shoppingcart.model.Supplier;
 @Repository("supplierDAO")
 
-public class SupplierDAOImpl implements SupplierDAO {
+public class SupplierDAOImpl implements SupplierDAO,Serializable {
    
 
 

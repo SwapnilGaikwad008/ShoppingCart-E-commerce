@@ -1,6 +1,8 @@
 package com.niit.shoppingcart.model;
 
 
+import java.io.Serializable;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -14,7 +16,7 @@ import org.springframework.stereotype.Component;
 @Entity
 @Table(name="supplier")
 @Component
-public class Supplier {
+public class Supplier  implements Serializable{
 	@Id
 	@Column(name="id")
 	private String id;

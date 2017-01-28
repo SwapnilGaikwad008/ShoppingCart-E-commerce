@@ -1,6 +1,7 @@
 package com.niit.shoppingcart.daoimpl;
 
 
+import java.io.Serializable;
 import java.util.List;
 
 import org.hibernate.Criteria;
@@ -19,7 +20,7 @@ import com.niit.shoppingcart.model.Category;
 
 
 @Repository("categoryDAO")
-public class CategoryDAOImpl implements CategoryDAO {
+public class CategoryDAOImpl implements CategoryDAO,Serializable {
 	
 
 	

@@ -1,6 +1,7 @@
 package com.niit.shoppingcart.daoimpl;
 
 
+import java.io.Serializable;
 import java.util.List;
 
 import org.hibernate.Query;
@@ -14,7 +15,7 @@ import com.niit.shoppingcart.dao.ProductDAO;
 import com.niit.shoppingcart.model.Product;
 @Repository("productDAO")
 
-public class ProductDAOImpl implements ProductDAO {
+public class ProductDAOImpl implements ProductDAO,Serializable {
 
 
 	@Autowired

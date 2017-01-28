@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
 @Table(name = "cart")
 @Component
 
-public class Cart{
+public class Cart implements Serializable{
 
 	
 	@Id

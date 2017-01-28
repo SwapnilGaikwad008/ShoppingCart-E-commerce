@@ -3,6 +3,7 @@ package com.niit.shoppingcart.daoimpl;
 
 
 
+import java.io.Serializable;
 import java.util.List;
 
 import org.hibernate.Criteria;
@@ -20,7 +21,7 @@ import com.niit.shoppingcart.model.User;
 
 
 @Repository("userDAO")
-public class UserDAOImpl implements UserDAO {
+public class UserDAOImpl implements UserDAO,Serializable {
 
 	Logger log = LoggerFactory.getLogger(UserDAOImpl.class);
 

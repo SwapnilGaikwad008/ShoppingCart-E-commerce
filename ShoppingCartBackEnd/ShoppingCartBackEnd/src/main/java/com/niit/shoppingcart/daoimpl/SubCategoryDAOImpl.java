@@ -1,6 +1,7 @@
 package com.niit.shoppingcart.daoimpl;
 
 
+import java.io.Serializable;
 import java.util.List;
 
 import org.hibernate.HibernateException;
@@ -15,7 +16,7 @@ import com.niit.shoppingcart.model.SubCategory;
 
 
 @Repository("subCategoryDAO")
-public class SubCategoryDAOImpl implements SubCategoryDAO {
+public class SubCategoryDAOImpl implements SubCategoryDAO,Serializable {
 	
 
 	
