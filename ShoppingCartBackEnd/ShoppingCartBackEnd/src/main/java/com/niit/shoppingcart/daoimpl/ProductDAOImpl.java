@@ -37,12 +37,18 @@ public class ProductDAOImpl implements ProductDAO {
 
 	}
 	
+
 	@Transactional
-	public List<Product> listByCategory(String categoryId){
-		String hql  = "from Product where category_id = '" + categoryId + "'";
+	public List<Product> listByCategoryAndSubCategory(String categoryId, String subCategoryId) {
+
+		String hql = "from Product where category_id = '" + categoryId + "' and subcategory_id = '" + subCategoryId + "'";
+
 		Query query = sessionFactory.getCurrentSession().createQuery(hql);
+
 		return query.list();
+
 	}
+
 	
 	@Transactional
 	public boolean save(Product product) {

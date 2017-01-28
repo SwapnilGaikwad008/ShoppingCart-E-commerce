@@ -8,7 +8,7 @@ public interface ProductDAO {
 
 	public List<Product> list();
 	
-	public List<Product> listByCategory(String categoryId);
+	public List<Product> listByCategoryAndSubCategory(String categoryId, String subCategoryId);
 
 	public Product get(String id);
 

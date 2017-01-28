@@ -55,6 +55,25 @@ import org.springframework.web.multipart.MultipartFile;
 	@Column(name = "stock")
     private String stock;
 	
+	public String getSubcategory_id() {
+		return subcategory_id;
+	}
+	public void setSubcategory_id(String subcategory_id) {
+		this.subcategory_id = subcategory_id;
+	}
+	public SubCategory getSubcategory() {
+		return subcategory;
+	}
+	public void setSubcategory(SubCategory subcategory) {
+		this.subcategory = subcategory;
+	}
+
+
+
+	@Column(name = "subcategory_id")
+	private String subcategory_id;
+
+	
 	@ManyToOne
 	@JoinColumn(name = "category_id", updatable = false, insertable = false, nullable = false)
 	private Category category;
@@ -63,6 +82,10 @@ import org.springframework.web.multipart.MultipartFile;
 	@JoinColumn(name = "supplier_id", updatable = false, insertable = false, nullable = false)
 	private Supplier supplier;
 	
+	@ManyToOne
+	@JoinColumn(name = "subcategory_id", updatable = false, insertable = false, nullable = false)
+	private SubCategory subcategory;
+
 	
 	public String getId() {
 		return id;
