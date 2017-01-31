@@ -50,6 +50,16 @@ public class ProductDAOImpl implements ProductDAO,Serializable {
 
 	}
 
+	@Transactional
+	public List<Product> getSimilarProducts(String searchText){
+		
+		String hql = "from Product where name like %"+ searchText +"%";
+		
+		Query query = sessionFactory.getCurrentSession().createQuery(hql);
+		
+		return query.list();
+	}
+
 	
 	@Transactional
 	public boolean save(Product product) {
@@ -111,7 +121,8 @@ public class ProductDAOImpl implements ProductDAO,Serializable {
 		return (Product) sessionFactory.getCurrentSession().get(Product.class, id);
 
 	}
-
+	
+	
 	
 }
 

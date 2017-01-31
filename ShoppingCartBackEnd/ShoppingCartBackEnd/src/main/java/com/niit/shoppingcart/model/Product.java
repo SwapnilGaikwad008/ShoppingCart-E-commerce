@@ -51,6 +51,7 @@ import org.springframework.web.multipart.MultipartFile;
 	@Column(name = "supplier_id")
     private String supplier_id;
     
+	
 	@Column(name = "price")
     private int price;
 	

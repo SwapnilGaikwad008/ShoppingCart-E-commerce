@@ -9,6 +9,8 @@ public interface ProductDAO {
 	public List<Product> list();
 	
 	public List<Product> listByCategoryAndSubCategory(String categoryId, String subCategoryId);
+	
+	public List<Product>  getSimilarProducts(String searchText);
 
 	public Product get(String id);
 
