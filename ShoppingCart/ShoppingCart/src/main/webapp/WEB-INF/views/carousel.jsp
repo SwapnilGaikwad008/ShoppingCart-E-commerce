@@ -39,19 +39,19 @@
     <!-- Wrapper for slides -->
     <div class="carousel-inner" role="listbox">
       <div class="item active">
-        <img src="nike1.jpg" alt="Chania" width="460" height="345">
+        <img src="Metcon.jpg" alt="Chania" width="460" height="345">
       </div>
 
       <div class="item">
-        <img src="nike.jpg" alt="Chania" width="460" height="345">
+        <img src="OffCourt.jpg" alt="Chania" width="460" height="345">
       </div>
     
       <div class="item">
-        <img src="addidas.jpg" alt="Flower" width="460" height="345">
+        <img src="Sneakers.jpg" alt="Flower" width="460" height="345">
       </div>
 
       <div class="item">
-        <img src="addidas1.jpg" alt="Flower" width="460" height="345">
+        <img src="HP.jpg" alt="Flower" width="460" height="345">
       </div>
     </div>
 

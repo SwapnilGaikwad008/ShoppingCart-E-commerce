@@ -50,7 +50,7 @@ public class AdminController {
 	
 	@Autowired
 	private ProductDAO productDAO;
-	private String path = "\\resources\\img";
+	private String path = "D:\\workspace\\ShoppingCart\\src\\main\\webapp\\resources\\img";
 
 	 @RequestMapping("/addcategory")
 	 public String Addcategory(Model model, HttpSession session, @ModelAttribute("id") String id, @ModelAttribute("name") String name, @ModelAttribute("description") String description)
@@ -123,6 +123,7 @@ public class AdminController {
 	 @RequestMapping("/addproduct")
 	 public String Addproduct(Model model, HttpSession session, @RequestParam("image") MultipartFile file, @ModelAttribute("subcategory_id") String subcategory_id,  @ModelAttribute("id") String id, @ModelAttribute("name") String name, @ModelAttribute("price") int price,@ModelAttribute("stock") String stock, @ModelAttribute("category_id") String category_id, @ModelAttribute("supplier_id") String supplier_id, @ModelAttribute("description") String description)
 	 {
+		 boolean isPresent =productDAO.get(id) !=null;
 		 product.setId(id);
 		 product.setName(name);
 		 product.setPrice(price);
@@ -131,20 +132,24 @@ public class AdminController {
 		 product.setCategory_id(category_id);
        	product.setSubcategory_id(subcategory_id);
 		 product.setSupplier_id(supplier_id);
-	
-		 if(productDAO.save(product))
-		 {
+		 
+	 boolean flag = false;
+		 if(isPresent){
+			 flag = productDAO.update(product);
+		 }else{
+			 flag = productDAO.save(product);
+		 }
+		 if(flag){
 		 Util.upload(path, file, product.getId()+".jpg");
 			 model.addAttribute("message", "Product added");
 			 session.setAttribute("product", product);
 			 List<Product> productList = productDAO.list();
 			 session.setAttribute("ProductList", productList);
-		 }else
-		 {
+		 }else{
 			 model.addAttribute("message", "Error occured");
-			 model.addAttribute("UserClickedPRODUCT", "true");
 		 }
-		 
+			 session.removeAttribute("product");
+			 model.addAttribute("UserClickedPRODUCT", true);
 		 return "admin";
 	 }
 	/*@RequestMapping("Category")
@@ -186,7 +191,7 @@ public class AdminController {
 	}   */
 	
 	 
-	 @RequestMapping(value = {"/categorytable"})
+	 @RequestMapping("/categorytable")
 		public String categorytable(Model model, HttpSession session)
 		
 		{

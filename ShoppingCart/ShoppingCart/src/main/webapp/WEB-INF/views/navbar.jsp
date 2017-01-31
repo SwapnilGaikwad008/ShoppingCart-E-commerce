@@ -1,9 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<%@ taglib prefix="c" 
-           uri="http://java.sun.com/jsp/jstl/core" %>
-           <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
+<%@ taglib prefix="c"  uri="http://java.sun.com/jsp/jstl/core" %>
+ <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <html>
@@ -22,16 +21,19 @@
     	$('.dropdown-toggle').dropdown();
     }
 </script>
-
 </head>
+<style>
 
+
+
+</style>
 
 <body onload="initializeDropdown();">
 
-<nav class="navbar navbar-default">
+<nav class="navbar navbar-default" style="margin-bottom:-15px;">
   <div class="container-fluid">
     <div class="navbar-header">
-      <a class="navbar-brand" href="#">Paduka</a>
+      <a class="navbar-brand" href="mainpage">Paduka</a>
     </div>
     
     
@@ -58,7 +60,7 @@
         <div class="form-group">
           <input type="text" class="form-control" placeholder="Search">
         </div>
-         <ul class="nav navbar-nav navbar-right" style="margin-top: -6px;margin-bottom: -7px";>
+         <ul class="nav navbar-nav navbar-right" style="margin-top:0;margin-bottom: -7px";>
          <c:choose>
 		    <c:when test="${loggedOut}">
 		        <li><a href="registration"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>

@@ -8,11 +8,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.niit.shoppingcart.dao.CategoryDAO;
 import com.niit.shoppingcart.dao.ProductDAO;
 import com.niit.shoppingcart.dao.SupplierDAO;
 import com.niit.shoppingcart.model.Category;
@@ -30,6 +33,9 @@ public class ProductController {
 
 	@Autowired
 	Category category;
+	
+	@Autowired
+	CategoryDAO categoryDAO;
 
 	@Autowired
 	Supplier supplier;
@@ -102,14 +108,31 @@ public class ProductController {
 
 		return "index";
 	}
-
-	 @RequestMapping(value="/show_product")
-	  public ModelAndView getSelectedProduct(@RequestParam("id")String id,RedirectAttributes redirect)	 
-	  {
-		 
-		 ModelAndView mv=new ModelAndView("index");
-		 redirect.addFlashAttribute("selectedProduct",productDAO.get(id));
+	
+	@RequestMapping("/search_product/{search_string}")
+	public ModelAndView getAllProductsBySearchString(@PathVariable("serach_string") String serach_string,Model model)
+	{
 		
-		 return mv;
-	 }
+		List<Product> products = productDAO.getSimilarProducts(serach_string);
+		ModelAndView mv = new ModelAndView("/index");
+		if(products.isEmpty())
+		{
+			mv.addObject("msg", "No products are available with the search text:" + serach_string);
+		}
+		else{
+			mv.addObject("productList", products);
+			model.addAttribute("productList", this.productDAO.list());
+		}
+		return mv;
+	}
+	
+	 
+
+	@RequestMapping(value="/product-{id}")
+	public String viewProduct(@PathVariable("id") String id, Model model)
+	{
+		model.addAttribute("selectedProduct", this.productDAO.get(id));
+		return "item";
+	}
+
 }

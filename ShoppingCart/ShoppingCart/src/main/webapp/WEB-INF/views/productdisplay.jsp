@@ -12,9 +12,6 @@
 
 </head>
 <style>
-body{
-margin:0;
-}
 h4{
 padding:0;
 margin:0;
@@ -25,12 +22,12 @@ font-family: san-serif;
 
 
 <div class="row" style="margin:0">
-<a href="show_product?id=${product.id}"></a>
-    <c:forEach items="${productList}" var="product">
+
+    <c:forEach items="${productListBySubCategory}" var="product">
         <div class="col-sm-3" style="margin-left:70px;padding-bottom:10px">
-               <img src="resources/img/${product.id}.jpg" height="220" width="220" style="padding:5px;border-bottom:1px solid grey">           
-                   <h4>${product.name}</h4>
-                   <h4>price ${product.price}</h4>
+       <img src="resources/img/${product.id}.jpg" height="220" width="220" style="padding:5px;border-bottom:1px solid grey">       
+             <a href="/item"> <h4>${product.name}</h4></a>   
+                   <h4>price ${product.price}</h4>  
                    <a class="col-xs-offset-5 btn btn-lg btn-info"
    href="cart_checkout">Buy Now</a>
                </div>

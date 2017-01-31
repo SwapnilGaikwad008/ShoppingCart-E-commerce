@@ -111,38 +111,26 @@ public class UserController {
 			
 			session.setAttribute("productList", productDAO.list());
 			
-			mv.addObject("loggedOut", "false");
+			session.setAttribute("loggedOut", false);
+			mv.addObject("ShowMainPage", true);
 
-			if (User.getRole().equals("ROLE_ADMIN")) {
-				log.debug("Logged in as Admin");
-				mv.addObject("isAdmin", "true");
-				
-				return mu; 
-
+			if("ROLE_ADMIN".equalsIgnoreCase(User.getRole())) {
+				session.setAttribute("isAdmin", true);
 			} else {
-				log.debug("Logged in as User");
-				mv.addObject("isAdmin", "false");
-				//myCart = cartDAO.list(UserID);
-				//mv.addObject("myCart", myCart);
-				// Fetch the myCart list based on User ID
-				//List<MyCart> cartList = cartDAO.list(UserID);
-				//mv.addObject("cartList", cartList);
-				//mv.addObject("cartSize", cartList.size());
+				session.setAttribute("isAdmin", false);
 			}
-			
-			mv.addObject("successMsg", "Welcome " + User.getName() + "!!!");
-
 		} else {
 			log.debug("Invalid Credentials");
 
 			mv.addObject("invalidCredentials", "true");
-			mv.addObject("errorMsg", "Invalid Credentials");
+			mv.addObject("message", "Invalid Credentials");
+			mv.addObject("ShowMessage", true);
 
 		}
 		log.debug("Ending of the method validate");
 		return mv;
 	}
-
+	
 	@RequestMapping("/logout")
 	public ModelAndView logout(HttpServletRequest request,HttpServletResponse response) {
 		log.debug("Starting of the method logout");
@@ -155,16 +143,15 @@ public class UserController {
 		session.setAttribute("subcategoryList", subcategoryDAO.list());
 		session.setAttribute("productList", productDAO.list());
 
-		mv.addObject("successMsg", "You successfully logged out");
-		mv.addObject("loggedOut", "true");
+		mv.addObject("message", "You have successfully logged out");
+		mv.addObject("ShowMessage", true);
+		session.setAttribute("loggedOut", true);
 		
 		 Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		
 		    if (auth != null){    
 		        new SecurityContextLogoutHandler().logout(request, response, auth);
 		    }
-		  //  return "redirect:/login?logout";
-		    
 		    
 		log.debug("Ending of the method logout");
 		return mv;

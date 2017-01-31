@@ -29,8 +29,7 @@ ${message }
           <div class="col-sm-6 form-group">
               <h4>ID</h4>
                 <input type="text"  name="id" placeholder="ID"  class="form-control"required ></input>
-              </div>
-                  
+              </div>      
 
               <div class="col-sm-6 form-group">
               <h4>Name</h4>
@@ -51,6 +50,17 @@ ${message }
   <label >Category-ID</label>
      <select name="category_id">
     <c:forEach var="list" items="${categoryList}">
+    <option>${list.id}</option>
+    </c:forEach>
+    </select>
+    </div>
+    <br>
+     <div>
+     
+      <div>
+  <label >SubCategory-ID</label>
+     <select name="subcategory_id">
+    <c:forEach var="list" items="${subcategoryList}">
     <option>${list.id}</option>
     </c:forEach>
     </select>

@@ -9,13 +9,17 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.niit.shoppingcart.dao.CategoryDAO;
 import com.niit.shoppingcart.dao.ProductDAO;
+import com.niit.shoppingcart.dao.SubCategoryDAO;
 import com.niit.shoppingcart.dao.SupplierDAO;
 import com.niit.shoppingcart.model.Category;
 import com.niit.shoppingcart.model.Product;
+import com.niit.shoppingcart.model.SubCategory;
 import com.niit.shoppingcart.model.Supplier;
 import com.niit.shoppingcart.model.User;
 
@@ -29,6 +33,11 @@ public class HomeController {
 
 	@Autowired
 	private CategoryDAO categoryDAO;
+
+	@Autowired
+	private SubCategory subcategory;
+	@Autowired
+	private SubCategoryDAO subcategoryDAO;
 
 	@Autowired
 	private Category category;
@@ -62,13 +71,14 @@ public class HomeController {
 		session.setAttribute("product", product);
 		session.setAttribute("supplier", supplier);
 		session.setAttribute("categoryList", categoryDAO.list());
+		session.setAttribute("subcategoryList", subcategoryDAO.list());
 		session.setAttribute("supplierList", supplierDAO.list());
 
 		log.debug("Ending of the method onLoad");
 		return mv;
 	}
-
-
+     
+     
 	@RequestMapping("/registration")
 	public ModelAndView registerHere() {
 		log.debug("Starting of the method registration");
@@ -86,14 +96,14 @@ public class HomeController {
 		log.debug("Ending of the method loginHere");
 		return mv;
 	}
-
+ 
 	
 	@RequestMapping("/index")
 	public String reDirectToHome(@ModelAttribute("selectedProduct") final Product selectedProduct, final Model model) {
 		log.debug("Starting of the method reDirectToHome");
 		model.addAttribute("selectedProduct", selectedProduct);
-	   /* model.addAttribute("categoryList", this.categoryDAO.list());
-	    model.addAttribute("productList", this.productDAO.list());*/
+	    model.addAttribute("categoryList", this.categoryDAO.list());
+	    model.addAttribute("productList", this.productDAO.list());
 		log.debug("Ending of the method reDirectToHome");
 		return "/adminHome";
 	}
